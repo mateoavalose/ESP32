@@ -1,0 +1,41 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Thu Feb 22 09:30:27 2024
+# Process ID: 9680
+# Current directory: C:/ElectronicaDigitalyMicrocontroladores/Quiz1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent8808 C:\ElectronicaDigitalyMicrocontroladores\Quiz1\Quiz1.xpr
+# Log file: C:/ElectronicaDigitalyMicrocontroladores/Quiz1/vivado.log
+# Journal file: C:/ElectronicaDigitalyMicrocontroladores/Quiz1\vivado.jou
+# Running On: LaptopMateo, OS: Windows, CPU Frequency: 2096 MHz, CPU Physical cores: 8, Host memory: 8389 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/ElectronicaDigitalyMicrocontroladores/Quiz1/Quiz1.xpr
+update_compile_order -fileset sources_1
+reset_run impl_1 -prev_step 
+launch_runs impl_1 -to_step write_bitstream -jobs 2
+wait_on_run impl_1
+open_run impl_1
+reset_run impl_1 -prev_step 
+launch_runs impl_1 -to_step write_bitstream -jobs 2
+wait_on_run impl_1
+reset_run synth_1
+launch_runs synth_1 -jobs 2
+wait_on_run synth_1
+launch_runs impl_1 -jobs 2
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 2
+wait_on_run impl_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/ElectronicaDigitalyMicrocontroladores/Quiz1/Quiz1.runs/impl_1/TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+close_hw_manager

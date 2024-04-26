@@ -1,0 +1,212 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sun Feb 18 20:39:17 2024
+# Process ID: 16112
+# Current directory: C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.runs/synth_1
+# Command line: vivado.exe -log MUX.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source MUX.tcl
+# Log file: C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.runs/synth_1/MUX.vds
+# Journal file: C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.runs/synth_1\vivado.jou
+# Running On: LaptopMateo, OS: Windows, CPU Frequency: 2096 MHz, CPU Physical cores: 8, Host memory: 8389 MB
+#-----------------------------------------------------------
+source MUX.tcl -notrace
+create_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 472.660 ; gain = 181.102
+Command: synth_design -top MUX -part xc7a35ticpg236-1L
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35ti'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35ti'
+INFO: [Device 21-403] Loading part xc7a35ticpg236-1L
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 20224
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1306.023 ; gain = 437.238
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'MUX' [C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.srcs/sources_1/new/MUX.vhd:43]
+INFO: [Synth 8-226] default block is never used [C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.srcs/sources_1/new/MUX.vhd:48]
+WARNING: [Synth 8-614] signal 'a' is read in the process but is not in the sensitivity list [C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.srcs/sources_1/new/MUX.vhd:46]
+WARNING: [Synth 8-614] signal 'b' is read in the process but is not in the sensitivity list [C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.srcs/sources_1/new/MUX.vhd:46]
+WARNING: [Synth 8-614] signal 'c' is read in the process but is not in the sensitivity list [C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.srcs/sources_1/new/MUX.vhd:46]
+WARNING: [Synth 8-614] signal 'd' is read in the process but is not in the sensitivity list [C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.srcs/sources_1/new/MUX.vhd:46]
+INFO: [Synth 8-256] done synthesizing module 'MUX' (0#1) [C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.srcs/sources_1/new/MUX.vhd:43]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1412.996 ; gain = 544.211
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1412.996 ; gain = 544.211
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1412.996 ; gain = 544.211
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1412.996 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.srcs/constrs_1/new/XDC_MUX.xdc]
+Finished Parsing XDC File [C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.srcs/constrs_1/new/XDC_MUX.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.srcs/constrs_1/new/XDC_MUX.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/MUX_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/MUX_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1425.188 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1425.188 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35ticpg236-1L
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:43 ; elapsed = 00:00:47 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input    4 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:48 ; elapsed = 00:00:51 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:01 ; elapsed = 00:01:05 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:01 ; elapsed = 00:01:05 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:01 ; elapsed = 00:01:05 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:18 ; elapsed = 00:01:22 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:18 ; elapsed = 00:01:22 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:18 ; elapsed = 00:01:22 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:18 ; elapsed = 00:01:22 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:18 ; elapsed = 00:01:22 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:18 ; elapsed = 00:01:22 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT6 |     4|
+|2     |IBUF |    18|
+|3     |OBUF |     4|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:18 ; elapsed = 00:01:22 . Memory (MB): peak = 1425.188 ; gain = 556.402
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:52 ; elapsed = 00:01:17 . Memory (MB): peak = 1425.188 ; gain = 544.211
+Synthesis Optimization Complete : Time (s): cpu = 00:01:18 ; elapsed = 00:01:22 . Memory (MB): peak = 1425.188 ; gain = 556.402
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1432.566 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1437.164 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: d07b8128
+INFO: [Common 17-83] Releasing license: Synthesis
+16 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:29 ; elapsed = 00:01:38 . Memory (MB): peak = 1437.164 ; gain = 964.504
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1437.164 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/ElectronicaDigitalyMicrocontroladores/Laboratorio1/MUX4to1/MUX4to1.runs/synth_1/MUX.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file MUX_utilization_synth.rpt -pb MUX_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Feb 18 20:41:20 2024...

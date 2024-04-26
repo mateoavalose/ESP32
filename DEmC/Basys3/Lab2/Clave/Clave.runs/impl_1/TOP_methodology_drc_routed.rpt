@@ -1,0 +1,95 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Tue Mar  5 13:42:58 2024
+| Host         : LaptopMateo running 64-bit major release  (build 9200)
+| Command      : report_methodology -file TOP_methodology_drc_routed.rpt -pb TOP_methodology_drc_routed.pb -rpx TOP_methodology_drc_routed.rpx
+| Design       : TOP
+| Device       : xc7a35ticpg236-1L
+| Speed File   : -1L
+| Design State : Fully Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 11
++-----------+------------------+------------------------------+------------+
+| Rule      | Severity         | Description                  | Violations |
++-----------+------------------+------------------------------+------------+
+| TIMING-17 | Critical Warning | Non-clocked sequential cell  | 10         |
+| LUTAR-1   | Warning          | LUT drives async reset alert | 1          |
++-----------+------------------+------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+TIMING-17#1 Critical Warning
+Non-clocked sequential cell  
+The clock pin B1/FSM_onehot_actual_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#2 Critical Warning
+Non-clocked sequential cell  
+The clock pin B1/FSM_onehot_actual_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#3 Critical Warning
+Non-clocked sequential cell  
+The clock pin B1/FSM_onehot_actual_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#4 Critical Warning
+Non-clocked sequential cell  
+The clock pin B1/FSM_onehot_actual_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#5 Critical Warning
+Non-clocked sequential cell  
+The clock pin B1/FSM_onehot_actual_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#6 Critical Warning
+Non-clocked sequential cell  
+The clock pin B1/FSM_onehot_actual_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#7 Critical Warning
+Non-clocked sequential cell  
+The clock pin B1/FSM_onehot_actual_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#8 Critical Warning
+Non-clocked sequential cell  
+The clock pin B1/FSM_onehot_actual_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#9 Critical Warning
+Non-clocked sequential cell  
+The clock pin B1/FSM_onehot_actual_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#10 Critical Warning
+Non-clocked sequential cell  
+The clock pin B1/FSM_onehot_actual_reg[9]/C is not reached by a timing clock
+Related violations: <none>
+
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell B1/FSM_onehot_actual[9]_i_3, with 2 or more inputs, drives asynchronous preset/clear pin(s) B1/FSM_onehot_actual_reg[0]/PRE, B1/FSM_onehot_actual_reg[1]/CLR,
+B1/FSM_onehot_actual_reg[2]/CLR, B1/FSM_onehot_actual_reg[3]/CLR,
+B1/FSM_onehot_actual_reg[4]/CLR, B1/FSM_onehot_actual_reg[5]/CLR,
+B1/FSM_onehot_actual_reg[6]/CLR, B1/FSM_onehot_actual_reg[7]/CLR,
+B1/FSM_onehot_actual_reg[8]/CLR, B1/FSM_onehot_actual_reg[9]/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+

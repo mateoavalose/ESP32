@@ -1,0 +1,234 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Tue Mar  5 13:28:45 2024
+| Host         : LaptopMateo running 64-bit major release  (build 9200)
+| Command      : report_methodology -file TOP_methodology_drc_routed.rpt -pb TOP_methodology_drc_routed.pb -rpx TOP_methodology_drc_routed.rpx
+| Design       : TOP
+| Device       : xc7a35ticpg236-1L
+| Speed File   : -1L
+| Design State : Fully Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 39
++-----------+------------------+--------------------------------+------------+
+| Rule      | Severity         | Description                    | Violations |
++-----------+------------------+--------------------------------+------------+
+| TIMING-14 | Critical Warning | LUT on the clock tree          | 1          |
+| TIMING-17 | Critical Warning | Non-clocked sequential cell    | 31         |
+| LUTAR-1   | Warning          | LUT drives async reset alert   | 4          |
+| TIMING-20 | Warning          | Non-clocked latch              | 2          |
+| LATCH-1   | Advisory         | Existing latches in the design | 1          |
++-----------+------------------+--------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+TIMING-14#1 Critical Warning
+LUT on the clock tree  
+The LUT n_0_100_BUFG_inst_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-17#1 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#2 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[10]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#3 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[11]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#4 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[12]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#5 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[13]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#6 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[14]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#7 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[15]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#8 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[16]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#9 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#10 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#11 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#12 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#13 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#14 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#15 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#16 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#17 Critical Warning
+Non-clocked sequential cell  
+The clock pin B13/FSM_onehot_auxL_reg[9]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#18 Critical Warning
+Non-clocked sequential cell  
+The clock pin B2/cont_2_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#19 Critical Warning
+Non-clocked sequential cell  
+The clock pin B2/cont_2_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#20 Critical Warning
+Non-clocked sequential cell  
+The clock pin B4/cont_1_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#21 Critical Warning
+Non-clocked sequential cell  
+The clock pin B4/cont_1_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#22 Critical Warning
+Non-clocked sequential cell  
+The clock pin B4/cont_1_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#23 Critical Warning
+Non-clocked sequential cell  
+The clock pin B4/cont_1_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#24 Critical Warning
+Non-clocked sequential cell  
+The clock pin B6/cont_1_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#25 Critical Warning
+Non-clocked sequential cell  
+The clock pin B6/cont_1_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#26 Critical Warning
+Non-clocked sequential cell  
+The clock pin B6/cont_1_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#27 Critical Warning
+Non-clocked sequential cell  
+The clock pin B6/cont_1_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#28 Critical Warning
+Non-clocked sequential cell  
+The clock pin B8/cont_1_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#29 Critical Warning
+Non-clocked sequential cell  
+The clock pin B8/cont_1_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#30 Critical Warning
+Non-clocked sequential cell  
+The clock pin B8/cont_1_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#31 Critical Warning
+Non-clocked sequential cell  
+The clock pin B8/cont_1_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell B4/aux_reg_i_3__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) B10/aux_reg/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#2 Warning
+LUT drives async reset alert  
+LUT cell B6/aux_reg_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) B10/aux_reg/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#3 Warning
+LUT drives async reset alert  
+LUT cell B6/aux_reg_i_3, with 2 or more inputs, drives asynchronous preset/clear pin(s) B11/aux_reg/PRE. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#4 Warning
+LUT drives async reset alert  
+LUT cell B8/aux_reg_i_2__0, with 2 or more inputs, drives asynchronous preset/clear pin(s) B11/aux_reg/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+TIMING-20#1 Warning
+Non-clocked latch  
+The latch B10/aux_reg/L7 (in B10/aux_reg macro) cannot be properly analyzed as its control pin B10/aux_reg/L7/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#2 Warning
+Non-clocked latch  
+The latch B11/aux_reg/L7 (in B11/aux_reg macro) cannot be properly analyzed as its control pin B11/aux_reg/L7/G is not reached by a timing clock
+Related violations: <none>
+
+LATCH-1#1 Advisory
+Existing latches in the design  
+There are 2 latches found in the design. Inferred latches are often the result of HDL coding mistakes, such as incomplete if or case statements.
+Related violations: <none>
+
+
