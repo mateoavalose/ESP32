@@ -98,16 +98,7 @@ dkms.conf
 .ionide
 
 ### Vivado ###
-#########################################################################################################
-##	This is an example .gitignore file for Vivado, please treat it as an example as
-##	it might not be complete. In addition, XAPP 1165 should be followed.
-#########
-#Exclude all
-*
-!*/
-!.gitignore
-###########################################################################
-##	VIVADO
+*Basys3/
 #Source files:
 #Do NOT ignore VHDL, Verilog, block diagrams or EDIF files.
 !*.vhd
@@ -157,12 +148,6 @@ dkms.conf
 !*.rpt
 !*.txt
 !*.vdi
-#C-files
-!*.c
-!*.h
-!*.elf
-!*.bmm
-!*.xmp
 
 ### XilinxVivado ###
 #.xci: IP-core property file with core container disabled
