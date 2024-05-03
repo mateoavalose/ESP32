@@ -14,9 +14,8 @@ void loop() {
   ledcWrite(0, duty_cycle);
   Serial.println(duty_cycle);
 
-  duty_cycle += 1/*5*/;
-  if(duty_cycle > 255) {
+  duty_cycle += 1; // Can be higher, like 15, to make the duty cycle increase faster
+  if(duty_cycle > 255)
     duty_cycle = 0;
-  }
   delay(50);
 }
