@@ -1,9 +1,9 @@
 #include <Arduino.h>
 #include <WiFi.h>
 
-const char* ssid = "***REMOVED***";//"***REMOVED***";
-const char* password = "***REMOVED***";//"***REMOVED***";
-const char* host = "httprequest.free.beeceptor.com"; // Host without the  HTTPS protocol
+const char* ssid = "";
+const char* password = "";
+const char* host = "sitio-buses-backend.onrender.com/postendpoint"; // Host without the  HTTPS protocol
 
 WiFiClient client;
 
