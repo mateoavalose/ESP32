@@ -47,10 +47,10 @@ void app_main() {
     init_hw();
     while(1) {
         uint32_t adc_val = 0;
-		for(int i = 0; i < SAMPLE_CNT; i++) {
-			adc_val += adc1_get_raw(adc_channel);
-		}
-		adc_val /= SAMPLE_CNT;
+	for(int i = 0; i < SAMPLE_CNT; i++) {
+		adc_val += adc1_get_raw(adc_channel);
+	}
+	adc_val /= SAMPLE_CNT;
         
         posPot = adc_val*(100/1023.0);
         while(posPot > posStep){
