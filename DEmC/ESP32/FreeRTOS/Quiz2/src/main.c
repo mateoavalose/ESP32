@@ -2,28 +2,28 @@
 #include <stdlib.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "driver/ledc.h"
 #include "driver/adc.h"
 
-// ADC
-#define SAMPLE_CNT 100
+// ADC - Potentiometer
+#define SAMPLE_CNT 100  
 static const adc1_channel_t adc_channel = ADC_CHANNEL_6;
 
-// Step Motor1
-#define GPIO_STEPa1 23
+// Stepper Motor - 14HS10-0404S
+// Step Motor1.1
+#define GPIO_STEPa1 23 // Black wire - Output 1
 #define GPIO_STEPa1_PIN_SEL (1ULL << GPIO_STEPa1)
-#define GPIO_STEPa2 22
+#define GPIO_STEPa2 22 // Green wire - Output 2
 #define GPIO_STEPa2_PIN_SEL (1ULL << GPIO_STEPa2)
-// Step Motor2
-#define GPIO_STEPb1 1
+// Step Motor1.2
+#define GPIO_STEPb1 1 // Red wire - Output 3
 #define GPIO_STEPb1_PIN_SEL (1ULL << GPIO_STEPb1)
-#define GPIO_STEPb2 3
+#define GPIO_STEPb2 3 // Blue wire - Output 4
 #define GPIO_STEPb2_PIN_SEL (1ULL << GPIO_STEPb2)
 
 // Variables
-int posBob = 0;
-int posStep = 0;
-int posPot = 0;
+int coilPos = 0; // Position of the stepper motor coil
+int stepPos = 0; // Position of the stepper motor
+int potPos = 0; // Position of the potentiometer
 
 // Functions 
 static void step_left(void);
@@ -46,53 +46,55 @@ static void init_hw() {
 void app_main() {
     init_hw();
     while(1) {
-        uint32_t adc_val = 0;
+        // Read ADC
+        uint32_t adc_val = 0; 
 		for(int i = 0; i < SAMPLE_CNT; i++) {
 			adc_val += adc1_get_raw(adc_channel);
 		}
 		adc_val /= SAMPLE_CNT;
-        
-        posPot = adc_val*(100/1023.0);
-        while(posPot > posStep){
+        // Convert ADC value to steps (0-100 range for half rotation)
+        potPos = adc_val*(100/1023.0);
+        // Move stepper motor to the potentiometer position
+        while(potPos > stepPos){
             step_right();
-            posStep++;
+            stepPos++;
         }
-        while(posPot < posStep){
+        while(potPos < stepPos){
             step_left();
-            posStep--;
+            stepPos--;
         }
     }
 }
 
 static void step_left(void){
-    switch(posBob){
+    switch(coilPos){
         case 0:
             gpio_set_level(GPIO_STEPa1, 1);
             gpio_set_level(GPIO_STEPa2, 0);
             gpio_set_level(GPIO_STEPb1, 1);
             gpio_set_level(GPIO_STEPb2, 0);
-            posBob = 1;
+            coilPos = 1;
             break;
         case 1:
             gpio_set_level(GPIO_STEPa1, 1);
             gpio_set_level(GPIO_STEPa2, 0);
             gpio_set_level(GPIO_STEPb1, 0);
             gpio_set_level(GPIO_STEPb2, 1);
-            posBob = 2;
+            coilPos = 2;
             break;
         case 2:
             gpio_set_level(GPIO_STEPa1, 0);
             gpio_set_level(GPIO_STEPa2, 1);
             gpio_set_level(GPIO_STEPb1, 0);
             gpio_set_level(GPIO_STEPb2, 1);
-            posBob = 3;
+            coilPos = 3;
             break;
         case 3:
             gpio_set_level(GPIO_STEPa1, 0);
             gpio_set_level(GPIO_STEPa2, 1);
             gpio_set_level(GPIO_STEPb1, 1);
             gpio_set_level(GPIO_STEPb2, 0);
-            posBob = 0;
+            coilPos = 0;
             break;
     }
     vTaskDelay(10 / portTICK_PERIOD_MS);
@@ -102,34 +104,34 @@ static void step_left(void){
     gpio_set_level(GPIO_STEPb2, 0);
 }
 static void step_right(void){
-    switch(posBob){
+    switch(coilPos){
         case 0:
             gpio_set_level(GPIO_STEPa1, 0);
             gpio_set_level(GPIO_STEPa2, 1);
             gpio_set_level(GPIO_STEPb1, 1);
             gpio_set_level(GPIO_STEPb2, 0);
-            posBob = 1;
+            coilPos = 1;
             break;
         case 1:
             gpio_set_level(GPIO_STEPa1, 0);
             gpio_set_level(GPIO_STEPa2, 1);
             gpio_set_level(GPIO_STEPb1, 0);
             gpio_set_level(GPIO_STEPb2, 1);
-            posBob = 2;
+            coilPos = 2;
             break;
         case 2:
             gpio_set_level(GPIO_STEPa1, 1);
             gpio_set_level(GPIO_STEPa2, 0);
             gpio_set_level(GPIO_STEPb1, 0);
             gpio_set_level(GPIO_STEPb2, 1);
-            posBob = 3;
+            coilPos = 3;
             break;
         case 3:
             gpio_set_level(GPIO_STEPa1, 1);
             gpio_set_level(GPIO_STEPa2, 0);
             gpio_set_level(GPIO_STEPb1, 1);
             gpio_set_level(GPIO_STEPb2, 0);
-            posBob = 0;
+            coilPos = 0;
             break;
     }
     vTaskDelay(10 / portTICK_PERIOD_MS);
