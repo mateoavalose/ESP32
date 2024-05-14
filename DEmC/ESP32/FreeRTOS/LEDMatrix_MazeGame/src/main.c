@@ -40,14 +40,14 @@ enum GameState currentState = IDLE; // Set the initial state
 
 // Debounce variables (ms)
 unsigned long lastButtonPressTime = 0;
-const unsigned long debounceDelay = 20;  // Delay to delete bounce
+const unsigned short debounceDelay = 20;  // Delay to delete bounce
 
-const unsigned long moveDelay = 100;     // Delay between moves
 unsigned long lastMoveTime = 0;
+const unsigned short moveDelay = 100;     // Delay between moves
 
 // Point system
 unsigned long startTime = 0;
-const unsigned long timeoutDuration = 6000; // 6 seconds timeout
+const unsigned short timeoutDuration = 6000; // 6 seconds timeout
 
 int greenDotCount = -1;
 
