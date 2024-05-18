@@ -12,7 +12,7 @@ void setup() {
 
 void loop() {
   ADC = analogRead(tempPin);
-  mV *= (3300.0 / 4096.0);
+  mV = ADC*(3300.0 / 4096.0);
   temp = mV / 10;
   Serial.print("\nADC: "); Serial.println(ADC);
   Serial.print(" Temp: "); Serial.print(temp); Serial.println(" C");
