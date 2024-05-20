@@ -3,7 +3,7 @@
 
 const char* ssid = "";
 const char* password = "";
-const char* host = "sitio-buses-backend.onrender.com/postendpoint"; // Host without the  HTTPS protocol
+const char* host = "httprequest.free.beeceptor.com"; // Host without the  HTTPS protocol
 
 WiFiClient client;
 
