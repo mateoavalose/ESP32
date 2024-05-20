@@ -7,8 +7,8 @@ TinyGPSPlus gps;
 int GPSBaud = 9600;
 
 // WiFi credentials
-const char* ssid = "***REMOVED***";
-const char* password = "***REMOVED***";
+const char* ssid = "";
+const char* password = "";
 const char* host = "pi2gps.proxy.beeceptor.com"; // Host without the  HTTPS protocol: pi2gps.proxy.beeceptor.com proxy to sitio-buses-backend.onrender.com
 // WiFi client
 WiFiClient client;
