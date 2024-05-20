@@ -15,6 +15,7 @@ void loop() {
   mV = ADC*(3300.0 / 4095.0);
   temp = mV / 10;
   Serial.print("\nADC: "); Serial.println(ADC);
+  Serial.print(" mV: "); Serial.print(mV); Serial.println(" mV");
   Serial.print(" Temp: "); Serial.print(temp); Serial.println(" C");
   delay(1000);
 }
