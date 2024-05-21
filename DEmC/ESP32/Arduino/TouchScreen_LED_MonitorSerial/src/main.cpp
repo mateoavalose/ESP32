@@ -13,14 +13,15 @@ void loop() {
   // Read data and print to serial
   if(Serial2.available() > 0) {
     int i = 0;
-    int j = 0;
+    int read = 0;
     while(i < 7) {
-      int j = Serial2.read();
-      if(j == -1)
+      read = Serial2.read();
+      if(read == -1)
         continue;
-      data[i] = j;
+      data[i] = read;
       Serial.println(data[i]);
       i++;
+      delay(10);
     }
     Serial.println("");
 
