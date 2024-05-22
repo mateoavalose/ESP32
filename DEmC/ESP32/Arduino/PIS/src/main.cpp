@@ -269,40 +269,40 @@ void therapy2() {
   buzzerMelody(0);
 }
 
-void buzzerMelody(int melody) {
-  switch (melody) {
-    case 0: // Melody 1: Super Mario Bros theme
-      int melody[] = {
-        NOTE_E5, NOTE_E5, NOTE_E5, NOTE_C5, NOTE_E5, NOTE_G5, NOTE_G4
-      };
-      int noteDurations[] = {
-        8, 4, 4, 8, 4, 2, 2
-      };
-      int size = sizeof(noteDurations) / sizeof(int); // Get the size of the array 
-      for (int thisNote = 0; thisNote < size; thisNote++) {
-        int noteDuration = 1000 / noteDurations[thisNote];
-        tone(buzzer, melody[thisNote], noteDuration); // Play the tone (Square wave at the given frequency: the tone)
-        int pauseBetweenNotes = noteDuration * 1.30;
-        delay(pauseBetweenNotes);
-        noTone(buzzer); // Stop the tone playing
-      }
-      break;
-    case 1: // Melody 2: Counting tone
-      int melody[] = {
-        NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5
-      };
-      int noteDurations[] = {
-        4, 2, 4, 1, 4, 2, 4, 4
-      };
-      int size = sizeof(noteDurations) / sizeof(int); // Get the size of the array 
-      for (int thisNote = 0; thisNote < size; thisNote++) {
-        int noteDuration = 1000 / noteDurations[thisNote];
-        tone(buzzer, melody[thisNote], noteDuration); // Play the tone (Square wave at the given frequency: the tone)
-        int pauseBetweenNotes = noteDuration * 1.30;
-        delay(pauseBetweenNotes);
-        noTone(buzzer); // Stop the tone playing
-      }
-      break;
+void buzzerMelody(int melodyNum) {
+  switch (melodyNum) {
+    case 0: { // Melody 1: Super Mario Bros theme
+        int melody[] = {
+          NOTE_E5, NOTE_E5, NOTE_E5, NOTE_C5, NOTE_E5, NOTE_G5, NOTE_G4
+        };
+        int noteDurations[] = {
+          8, 4, 4, 8, 4, 2, 2
+        };
+        int size = sizeof(noteDurations) / sizeof(int); // Get the size of the array 
+        for (int thisNote = 0; thisNote < size; thisNote++) {
+          int noteDuration = 1000 / noteDurations[thisNote];
+          tone(buzzer, melody[thisNote], noteDuration); // Play the tone (Square wave at the given frequency: the tone)
+          int pauseBetweenNotes = noteDuration * 1.30;
+          delay(pauseBetweenNotes);
+          noTone(buzzer); // Stop the tone playing
+        }
+      } break;
+    case 1: { // Melody 2: Counting tone
+        int melody[] = {
+          NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5
+        };
+        int noteDurations[] = {
+          4, 2, 4, 1, 4, 2, 4, 4
+        };
+        int size = sizeof(noteDurations) / sizeof(int); // Get the size of the array 
+        for (int thisNote = 0; thisNote < size; thisNote++) {
+          int noteDuration = 1000 / noteDurations[thisNote];
+          tone(buzzer, melody[thisNote], noteDuration); // Play the tone (Square wave at the given frequency: the tone)
+          int pauseBetweenNotes = noteDuration * 1.30;
+          delay(pauseBetweenNotes);
+          noTone(buzzer); // Stop the tone playing
+        }
+      } break;
     default:
       break;
   }
