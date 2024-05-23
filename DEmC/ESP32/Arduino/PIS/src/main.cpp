@@ -298,7 +298,7 @@ void therapy2() {
         if(readPressureSensor() > pressureLevel) 
           buzzerMelody(1);
         else if(readPressureSensor() < pressureLevel - range) {
-          while(readPressureSensor() < pressureLevel)
+          while(readPressureSensor() < pressureLevel - range)
             digitalWrite(Motor, 1);
           digitalWrite(Motor, 0);
         }
@@ -352,10 +352,10 @@ void buzzerMelody(int melodyNum) {
       } break;
     case 1: { // Melody 2: Counting tone
         int melody[] = {
-          NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5
+          NOTE_C5, NOTE_C5, NOTE_G5
         };
         int noteDurations[] = {
-          4, 2, 4, 1, 4, 2, 4, 4
+          4, 2, 4
         };
         int size = sizeof(noteDurations) / sizeof(int); // Get the size of the array 
         for (int thisNote = 0; thisNote < size; thisNote++) {
