@@ -11,8 +11,7 @@ const int flexSensor = 26;
  Actuators
 */
 const int buzzer = 25;
-const int Motor1 = 33;
-const int Motor2 = 32;
+const int Motor = 33;
 
 /*
   Variables
@@ -22,7 +21,8 @@ int HMI_Data [7]; // 0: Start, 1: Page, 2: Component, 3: Event, 4: Empty, 5: Emp
 // Therapy states
 enum State {Start, Therapy1, Therapy2};
 State currentState = Start;
-// Base therapy time in milliseconds (10 minutes)
+// Base therapy time in milliseconds (10 minutes)k
+
 int therapyTime = 600000;
 // Pressure levels in kPa and range
 const int lowPressure = 2;
@@ -36,10 +36,13 @@ int level = 1;
   Function declarations
 */
 void updateHMI_int(String identifier, int value);
+void updateHMI_float(String identifier, String number);
+String floatToString(float num);
 void updateHMI_txt(String identifier, String text);
+void updateHMI_page(int page);
 void readHMI();
 int readFlexSensor();
-int readPressureSensor();
+float readPressureSensor();
 void therapy1();
 void therapy2();
 void buzzerMelody(int melody);
@@ -52,67 +55,77 @@ void setup() {
   pinMode(pressureSensor, INPUT);
   pinMode(flexSensor, INPUT);
   // Actuators
-  ledcSetup(0, 5000, 12); // Channel, frequency, resolution
-  ledcAttachPin(Motor1, 0);
-  ledcSetup(1, 5000, 12); // Channel, frequency, resolution
-  ledcAttachPin(Motor2, 1);
+  pinMode(Motor, OUTPUT);
   // HMI
   Serial2.begin(9600);
+  delay(5000);
+  updateHMI_page(0);
 }
 
 void loop() {
   switch(currentState) {
     case Start:
-      updateHMI_int("n0", round(therapyTime / 60000.0));
+      updateHMI_int("n0", therapyTime / 60000.0);
       if(Serial2.available() > 0) {
         readHMI();
-        if(HMI_Data[1] == 0 && HMI_Data[2] == 3)
+        if(HMI_Data[1] == 0 && HMI_Data[2] == 5)
           therapyTime += 60000;
         else if(HMI_Data[1] == 0 && HMI_Data[2] == 4)
           therapyTime -= 60000;
-        else if(HMI_Data[1] == 0 && HMI_Data[2] == 5)
+            if(therapyTime/60000 < 1)
+              therapyTime = 60000;
+        else if(HMI_Data[1] == 0 && HMI_Data[2] == 2) {
           currentState = Therapy1;
-        else if(HMI_Data[1] == 0 && HMI_Data[2] == 6)
+          updateHMI_page(1);
+        }
+        else if(HMI_Data[1] == 0 && HMI_Data[2] == 3) {
           currentState = Therapy2;
+          updateHMI_page(2);
+        }
       }
       break;
     case Therapy1:
-      updateHMI_int("n0", round(therapyTime / 60000.0));
+      updateHMI_float("x1", floatToString(therapyTime / 60000.0));
       updateHMI_int("n1", readFlexSensor());
-      updateHMI_int("n2", readPressureSensor());
+      updateHMI_float("x0", floatToString(readPressureSensor()));
       if(Serial2.available() > 0) {
         readHMI();
-        if(HMI_Data[1] == 1 && HMI_Data[2] == 3) {
+        if(HMI_Data[1] == 1 && HMI_Data[2] == 2) {
           therapy1();
           currentState = Start;
-        } else if(HMI_Data[1] == 1 && HMI_Data[2] == 4)
-          currentState = Start; 
+        } else if(HMI_Data[1] == 1 && HMI_Data[2] == 7) {
+          currentState = Start;
+          updateHMI_page(0);    
+        }
       }
       break;
     case Therapy2:
-      updateHMI_int("n0", round(therapyTime / 60000.0));
+      updateHMI_float("x1", floatToString(therapyTime / 60000.0));
       updateHMI_int("n1", readFlexSensor());
-      updateHMI_int("n2", readPressureSensor());
-      updateHMI_int("n3", level);
+      updateHMI_float("x0", floatToString(readPressureSensor()));
+      updateHMI_int("n0", level);
       if(Serial2.available() > 0) {
         readHMI();
-        if(HMI_Data[1] == 2 && HMI_Data[2] == 3) {
+        if(HMI_Data[1] == 2 && HMI_Data[2] == 15) {
           level = 1; 
-          updateHMI_int("n3", level);
-        } else if(HMI_Data[1] == 2 && HMI_Data[2] == 4) {
+          updateHMI_int("n0", level);
+        } else if(HMI_Data[1] == 2 && HMI_Data[2] == 16) {
           level = 2; 
-          updateHMI_int("n3", level);
-        } else if(HMI_Data[1] == 2 && HMI_Data[2] == 5) {
+          updateHMI_int("n0", level);
+        } else if(HMI_Data[1] == 2 && HMI_Data[2] == 17) {
           level = 3; 
-          updateHMI_int("n3", level);
-        } else if(HMI_Data[1] == 2 && HMI_Data[2] == 6) {
+          updateHMI_int("n0", level);
+        } else if(HMI_Data[1] == 2 && HMI_Data[2] == 3) {
           therapy2();
           currentState = Start;
-        } else if(HMI_Data[1] == 2 && HMI_Data[2] == 6)
+        } else if(HMI_Data[1] == 2 && HMI_Data[2] == 11) {
           currentState = Start;
+          updateHMI_page(0);
+        }
       }
       break;
   }
+  delay(100);
 }
 
 /*
@@ -127,8 +140,36 @@ void updateHMI_int(String identifier, int value) {
   delay(100);
 }
 
+void updateHMI_float(String identifier, String number) {
+  String command = identifier + ".val=" + number;
+  Serial2.print(command);
+  Serial2.write(0xFF);
+  Serial2.write(0xFF);
+  Serial2.write(0xFF);
+  delay(100);
+}
+
+String floatToString(float value) {
+  value = value * 100;
+  int intValue = (int)value;
+  String strValue = String(intValue);
+  if(value < 10.0) {
+    strValue = "0" + strValue;
+  }
+  return strValue;
+}
+
 void updateHMI_txt(String identifier, String text) {
   String command = identifier + ".txt=\"" + text + "\"";
+  Serial2.print(command);
+  Serial2.write(0xFF);
+  Serial2.write(0xFF);
+  Serial2.write(0xFF);
+  delay(100);
+}
+
+void updateHMI_page(int page) {
+  String command = "page page" + String(page);
   Serial2.print(command);
   Serial2.write(0xFF);
   Serial2.write(0xFF);
@@ -152,83 +193,83 @@ int readFlexSensor() {
   int ADC = analogRead(flexSensor);
   int V = ADC * (3.3 / 4095.0);
   int flex = (V - 1.9947) / 0.0078; // Flex angle in degrees
+  if(flex < 0)
+    flex = 0;
   return flex;
 }
 
-int readPressureSensor() {
+float readPressureSensor() {
   int ADC = analogRead(pressureSensor);
   int V = ADC * (3.3 / 4095.0);
-  int pressure = (V - 0.46) / 0.0086; // Pressure in kPa
+  float pressure = (V/5.0 - 0.04) / 0.09; // Pressure in kPa - formula for 0-5V output, has to be adjusted for 0-3.3V
+  if(pressure < 0)
+    pressure = 0;
+  else if(pressure >= 9.5)
+    while(pressure > 9){
+      digitalWrite(Motor, 0);
+      buzzerMelody(1);
+      delay(500);
+      readPressureSensor();
+    }
   return pressure;
 }
 
 void therapy1() {
-  enum StateT1 {pressurize, depressurize, hold, pause};
+  enum StateT1 {pressurize, hold, pause};
   StateT1 currentStateT1 = pressurize;
-  StateT1 previousStateT1 = pressurize;
   const int onTime = 10000;
-  const int offTime = 5000;
-  int currentTime = millis();
-
-  while(millis() - currentTime < therapyTime) {
+  const int offTime = 20000;
+  int startTime = millis();
+  int timeLeft = therapyTime;
+  bool exit = false;
+  while(timeLeft > 0 && !exit) {
     switch(currentStateT1) {
       case pressurize:
-        ledcWrite(0, 4095);
-        ledcWrite(1, 0);
-        if(millis() - currentTime >= onTime) {
-          previousStateT1 = pressurize;
+        digitalWrite(Motor, 1);
+        if(millis() - startTime >= onTime) {
           currentStateT1 = hold;
-          currentTime = millis();
+          startTime = millis();
         }
-        break;
-      case depressurize:
-        ledcWrite(0, 0);
-        ledcWrite(1, 4095);
-        if(millis() - currentTime >= onTime) {
-          previousStateT1 = depressurize;
-          currentStateT1 = hold;
-          currentTime = millis();
-        }
+        timeLeft -= 420;
         break;
       case hold:
-        ledcWrite(0, 0);
-        ledcWrite(1, 0);
-        if(millis() - currentTime >= offTime) {
-          if(previousStateT1 == pressurize)
-            currentStateT1 = depressurize;
-          else if(previousStateT1 == depressurize) {
-            currentStateT1 = pressurize;
-            buzzerMelody(1);
-          }
-          currentTime = millis();
+        digitalWrite(Motor, 0);
+        if(millis() - startTime >= offTime) {
+          currentStateT1 = pressurize;
+          buzzerMelody(1);
+          startTime = millis();
         }
+        timeLeft -= 420;
         break;
       case pause:
-        ledcWrite(0, 0);
-        ledcWrite(1, 0);
+        digitalWrite(Motor, 0);
         if(Serial2.available() > 0) {
-          readHMI();
-          if(HMI_Data[1] == 1 && HMI_Data[2] == 4) {
-            currentStateT1 = depressurize;
-            currentTime = millis();
+          readHMI(); // delay of 10
+          if(HMI_Data[1] == 1 && HMI_Data[2] == 2) {
+            therapyTime = timeLeft;
+            startTime = millis();
+            currentStateT1 = hold;
+          } else if(HMI_Data[1] == 1 && HMI_Data[2] == 7) {
+            exit = true;
           }
+            
         }
         break;
     }
-    updateHMI_int("n0", round(currentTime / 60000.0));
-    updateHMI_int("n1", readFlexSensor());
-    updateHMI_int("n2", readPressureSensor());
+    updateHMI_float("x1", floatToString(timeLeft / 60000.0)); // delay of 100
+    updateHMI_int("n1", readFlexSensor()); // delay of 100
+    updateHMI_float("x0", floatToString(readPressureSensor())); // delay of 100
     if(Serial2.available() > 0) {
       readHMI();
-      if(HMI_Data[1] == 1 && HMI_Data[2] == 4) {
-        currentStateT1 = depressurize;
-        delay(onTime);
-        break;
+      if(HMI_Data[1] == 1 && HMI_Data[2] == 3) {
+        currentStateT1 = pause;
       }
     }
-    delay(500);
+    delay(100);
   }
   buzzerMelody(0);
+  digitalWrite(Motor, 0);
+  updateHMI_page(0);
 }
 
 void therapy2() {
@@ -236,42 +277,64 @@ void therapy2() {
   if(level == 1) {
     pressureLevel = lowPressure + range;
     while(readPressureSensor() < lowPressure)
-      ledcWrite(0, 4095);
+      digitalWrite(Motor, 1);
   } else if(level == 2) {
     pressureLevel = mediumPressure + range;
     while(readPressureSensor() < mediumPressure)
-      ledcWrite(0, 4095);
+      digitalWrite(Motor, 1);
   } else if(level == 3) {
     pressureLevel = highPressure + range;
     while(readPressureSensor() < highPressure)
-      ledcWrite(0, 4095);
+      digitalWrite(Motor, 1);
   }
-  ledcWrite(0, 0);
-
-  int currentTime = millis();
-  while(millis() - currentTime < therapyTime) {
-    updateHMI_int("n0", round(currentTime / 60000.0));
-    updateHMI_int("n1", readFlexSensor());
-    updateHMI_int("n2", readPressureSensor());
-    if(readPressureSensor() > pressureLevel) 
-      buzzerMelody(1);
-    else if(readPressureSensor() < pressureLevel - range) {
-      while(readPressureSensor() < pressureLevel)
-        ledcWrite(0, 4095);
-      ledcWrite(0, 0);
-    }
-    if(Serial2.available() > 0)
-      readHMI();
-      if(HMI_Data[1] == 2 && HMI_Data[2] == 4)
+  digitalWrite(Motor, 0);
+  enum StateT2 {active, pause};
+  StateT2 currentStateT2 = active;
+  int timeLeft = therapyTime; 
+  bool exit = false;
+  while(timeLeft > 0 && !exit) {
+    switch(currentStateT2) {
+      case active:
+        if(readPressureSensor() > pressureLevel) 
+          buzzerMelody(1);
+        else if(readPressureSensor() < pressureLevel - range) {
+          while(readPressureSensor() < pressureLevel)
+            digitalWrite(Motor, 1);
+          digitalWrite(Motor, 0);
+        }
+        timeLeft -= 420;
+        if(Serial2.available() > 0) {
+          readHMI(); // delay of 10
+          if(HMI_Data[1] == 2 && HMI_Data[2] == 4)
+            currentStateT2 = pause;
+            const int pauseTime = timeLeft;
+        }
+        break; 
+      case pause:
+        if(Serial2.available() > 0) {
+          readHMI(); 
+          if(HMI_Data[1] == 2 && HMI_Data[2] == 3) {
+            currentStateT2 = active;
+          } else if(HMI_Data[1] == 2 && HMI_Data[2] == 11) {
+            exit = true;
+          }
+            
+        }
         break;
-    delay(500);
+      }
+    updateHMI_float("x1", floatToString(timeLeft / 60000.0)); // delay of 100
+    updateHMI_int("n1", readFlexSensor()); // delay of 100
+    updateHMI_float("x0", floatToString(readPressureSensor())); // delay of 100
+    delay(100);
   }
+  digitalWrite(Motor, 0);
   buzzerMelody(0);
+  updateHMI_page(0);
 }
 
 void buzzerMelody(int melodyNum) {
   switch (melodyNum) {
-    case 0: { // Melody 1: Super Mario Bros theme
+    case 0: { // Melody 1: Super Mario Bros theme1
         int melody[] = {
           NOTE_E5, NOTE_E5, NOTE_E5, NOTE_C5, NOTE_E5, NOTE_G5, NOTE_G4
         };
