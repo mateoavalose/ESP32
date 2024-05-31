@@ -22,7 +22,6 @@ int HMI_Data [7]; // 0: Start, 1: Page, 2: Component, 3: Event, 4: Empty, 5: Emp
 enum State {Start, Therapy1, Therapy2};
 State currentState = Start;
 // Base therapy time in milliseconds (10 minutes)k
-
 int therapyTime = 600000;
 // Pressure levels in kPa and range
 const int lowPressure = 2;
@@ -30,7 +29,7 @@ const int mediumPressure = 4;
 const int highPressure = 6;
 const int range = 2;
 // Selected therapy level
-int level = 1;
+int level = 0;
 
 /*
   Function declarations
@@ -95,7 +94,7 @@ void loop() {
           currentState = Start;
         } else if(HMI_Data[1] == 1 && HMI_Data[2] == 7) {
           currentState = Start;
-          updateHMI_page(0);    
+          updateHMI_page(0);
         }
       }
       break;
@@ -160,7 +159,7 @@ String floatToString(float value) {
 }
 
 void updateHMI_txt(String identifier, String text) {
-  String command = identifier + ".txt=\"" + text + "\"";
+  String command = identifier + ".txt=\"" + text + "\""; 
   Serial2.print(command);
   Serial2.write(0xFF);
   Serial2.write(0xFF);
@@ -217,7 +216,7 @@ float readPressureSensor() {
 void therapy1() {
   enum StateT1 {pressurize, hold, pause};
   StateT1 currentStateT1 = pressurize;
-  const int onTime = 10000;
+  const int onTime = 8000;
   const int offTime = 20000;
   int startTime = millis();
   int timeLeft = therapyTime;
@@ -307,7 +306,6 @@ void therapy2() {
           readHMI(); // delay of 10
           if(HMI_Data[1] == 2 && HMI_Data[2] == 4)
             currentStateT2 = pause;
-            const int pauseTime = timeLeft;
         }
         break; 
       case pause:
