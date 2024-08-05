@@ -29,8 +29,8 @@ static void initBrownout(void);
 /** Use the web interface to configure wifi settings **/
 
 char hostName[MAX_HOST_LEN] = ""; // Default Host name
-char ST_SSID[MAX_HOST_LEN]  = "***REMOVED***"; //Default router ssid
-char ST_Pass[MAX_PWD_LEN] =   "***REMOVED***"; //Default router passd
+char ST_SSID[MAX_HOST_LEN]  = ""; //Default router ssid
+char ST_Pass[MAX_PWD_LEN] =   ""; //Default router passd
 
 // leave following blank for dhcp
 char ST_ip[MAX_IP_LEN]  = ""; // Static IP

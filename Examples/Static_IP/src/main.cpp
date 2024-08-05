@@ -2,15 +2,15 @@
 #include <WiFi.h>
 
 // Replace with your network credentials
-const char* ssid = "***REMOVED***";  // Enter SSID here
-const char* password = "***REMOVED***";  //Enter Password here
+const char* ssid = "";  // Enter SSID here
+const char* password = "";  //Enter Password here
 
 // Static IP configuration
-IPAddress staticIP(,,,,); // ESP32 static IP
-IPAddress gateway(,,,,);    // IP Address of your network gateway (router)
-IPAddress subnet(,,,,);   // Subnet mask
-IPAddress primaryDNS(,,,,); // Primary DNS (optional)
-IPAddress secondaryDNS(,,,,);   // Secondary DNS (optional)
+IPAddress staticIP(, , , ); // ESP32 static IP
+IPAddress gateway(, , , );    // IP Address of your network gateway (router)
+IPAddress subnet(, , , );   // Subnet mask
+IPAddress primaryDNS(, , , ); // Primary DNS (optional)
+IPAddress secondaryDNS(, , , );   // Secondary DNS (optional)
 
 // Setup
 /*void setup() {

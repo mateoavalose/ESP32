@@ -35,13 +35,13 @@
 // ===========================
 // Enter your WiFi credentials
 // ===========================
-const char* ssid = "***REMOVED***";
-const char* password = "***REMOVED***";
-IPAddress staticIP(,,,,); // ESP32 static IP
-IPAddress gateway(,,,,);    // IP Address of your network gateway (router)
-IPAddress subnet(,,,,);   // Subnet mask
-IPAddress primaryDNS(,,,,); // Primary DNS (optional)
-IPAddress secondaryDNS(,,,,);   // Secondary DNS (optional)
+const char* ssid = "";
+const char* password = "";
+IPAddress staticIP(192, 168, 68, 100); // ESP32 static IP
+IPAddress gateway(192, 168, 68, 1);    // IP Address of your network gateway (router)
+IPAddress subnet(255, 255, 255, 0);   // Subnet mask
+IPAddress primaryDNS(200, 21, 200, 10); // Primary DNS (optional)
+IPAddress secondaryDNS(200, 21, 200, 80);   // Secondary DNS (optional)
 
 void startCameraServer();
 void setupLedFlash(int pin);

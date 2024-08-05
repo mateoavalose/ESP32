@@ -1,11 +1,8 @@
 #include <Arduino.h>
 #include <WiFi.h>
 
-//const char *WIFI_NAME = "***REMOVED***";
-//const char *WIFI_PASSWORD = "***REMOVED***";
-
-const char *WIFI_NAME = "***REMOVED***";
-const char *WIFI_PASSWORD = "***REMOVED***";
+const char *WIFI_NAME = "";
+const char *WIFI_PASSWORD = "";
 
 WiFiServer server(80);
 
